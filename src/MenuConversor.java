@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class MenuConversor {
@@ -12,11 +13,12 @@ public class MenuConversor {
         String moeda2 = leitura.nextLine();
         try {
             Moeda novaMoeda = buscaCotacao.buscaCotacao(moeda1, moeda2);
-            System.out.println(novaMoeda);
+            //System.out.println(novaMoeda);
             System.out.println("Digite o valor a ser convertido:");
             double valor = leitura.nextDouble();
-            double fim = valor* novaMoeda.conversion_rate();
-            System.out.println("O valor da moeda convertida é: "+fim+" "+moeda2);
+            double convertida = valor* novaMoeda.conversion_rate();
+            DecimalFormat fim = new DecimalFormat("##,###.00");
+            System.out.println("O valor da moeda convertida é: "+ fim.format(convertida) +" "+moeda2);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             System.out.println("ERRO MenuConversor");
